@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WeatherApplication</string>
+    <string name="title_weather">Weather</string>
+    <string name="title_forecast">Forecast</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="search_city">Search City</string>
+</resources>
