@@ -2,17 +2,14 @@ package com.example.weatherapplication.ui.currentWeather
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.bumptech.glide.util.Util
 import com.example.weatherapplication.R
 import com.example.weatherapplication.data.WeatherResult
 import com.example.weatherapplication.database.WeatherDao
@@ -123,25 +120,28 @@ class CurrentWeatherFragment : Fragment() {
         binding!!.textWeather.text = response.weatherList!![0].description
         binding!!.txtWind.text = response.wind!!.speed.toString() + " kph"
         binding!!.txtHumidity.text = response.main!!.humidity.toString() + " %"
-        loadBackgroundbg(response.weatherList!![0].main!!)
+        loadBackgroundbg(
+            response.weatherList!![0].main!!,
+            response.weatherList!![0].icon.toString()
+        )
     }
 
-    private fun loadBackgroundbg(icon: String) {
-        if (icon.lowercase(Locale.getDefault()).contains("snow")) {
+    private fun loadBackgroundbg(bg: String, icon: String?) {
+        if (bg.lowercase(Locale.getDefault()).contains("snow")) {
             binding!!.background.background = requireActivity().getDrawable(R.drawable.snow_bg)
-        } else if (icon.lowercase(Locale.getDefault())
+        } else if (bg.lowercase(Locale.getDefault())
                 .contains("rain")
         ) {
             binding!!.background.background = requireActivity().getDrawable(R.drawable.rainy_bg)
-        } else if (icon.lowercase(Locale.getDefault())
+        } else if (bg.lowercase(Locale.getDefault())
                 .contains("haze")
         ) {
             binding!!.background.background = requireActivity().getDrawable(R.drawable.haze_bg)
-        } else if (icon.lowercase(Locale.getDefault())
+        } else if (bg.lowercase(Locale.getDefault())
                 .contains("cloud")
         ) {
             binding!!.background.background = requireActivity().getDrawable(R.drawable.cloudy_bg)
-        } else if (icon.lowercase(Locale.getDefault())
+        } else if (bg.lowercase(Locale.getDefault())
                 .contains("sunny")
         ) {
             binding!!.background.background = requireActivity().getDrawable(R.drawable.sunny_bg)
@@ -204,10 +204,10 @@ class CurrentWeatherFragment : Fragment() {
                         "H " + weatherEntity.tempH.toString() + "°C"
                     binding!!.textLow.text =
                         "L " + weatherEntity.tempL.toString() + "°C"
-                    binding!!.textWeather.text = weatherEntity.description
-                    binding!!.txtHumidity.text = weatherEntity.humidity.toString()
+                    binding!!.textWeather.text = weatherEntity.description.plus(" km/h")
+                    binding!!.txtHumidity.text = weatherEntity.humidity.toString().plus(" %")
                     binding!!.txtWind.text = weatherEntity.wind.toString()
-                    loadBackgroundbg(weatherEntity.description)
+                    loadBackgroundbg(weatherEntity.description, null)
                 }
             }
         }

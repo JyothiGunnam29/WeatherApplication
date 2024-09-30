@@ -9,10 +9,10 @@ import com.example.weatherapplication.ui.Forecast.ForeCastWeatherRepository
 
 class CurrentWeatherViewModel : ViewModel() {
     private var weatherResult = MutableLiveData<WeatherResult?>()
-    private var currentWeatherRepository: CurrentWeatherRepository = CurrentWeatherRepository()
+    var currentWeatherRepository: CurrentWeatherRepository = CurrentWeatherRepository()
 
     private var forecastResult = MutableLiveData<ForecastResult?>()
-    private var foreCastWeatherRepository: ForeCastWeatherRepository
+    var foreCastWeatherRepository: ForeCastWeatherRepository
 
     var City: String? = null
 
@@ -22,7 +22,7 @@ class CurrentWeatherViewModel : ViewModel() {
         forecastResult = foreCastWeatherRepository.getcurrentResponseLiveData()
     }
 
-    val weatherData: LiveData<WeatherResult?>
+    val weatherData: MutableLiveData<WeatherResult?>
         get() = weatherResult
 
     fun callApi(city: String?) {
