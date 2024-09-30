@@ -169,19 +169,17 @@ class CurrentWeatherFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setData(city: String) {
-        if (!Utils.isNetworkAvailable(requireActivity())) {
-            showToast(requireActivity(), "You are currently offline")
-            return
-        }
         lifecycleScope.launch {
             val count: Int = database?.weatherDao()
                 ?.countWeatherByCityAndDate(city, Utils.getCurrentDateString())!!
             if (count > 0) {
                 loadData(city)
             } else
-                if (count == 0 && Utils.isNetworkAvailable(requireActivity())) {
+                if (Utils.isNetworkAvailable(requireActivity())) {
                     //showToast(requireActivity(),"Data not present calling api")
                     currentWeatherViewModel!!.callApi(city)
+                } else {
+                    showToast(requireActivity(), "You are currently offline")
                 }
         }
     }

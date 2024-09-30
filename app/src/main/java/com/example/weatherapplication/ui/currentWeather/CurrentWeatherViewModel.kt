@@ -9,10 +9,10 @@ import com.example.weatherapplication.ui.Forecast.ForeCastWeatherRepository
 
 class CurrentWeatherViewModel : ViewModel() {
     private var weatherResult = MutableLiveData<WeatherResult?>()
-    var currentWeatherRepository: CurrentWeatherRepository = CurrentWeatherRepository()
+    private var currentWeatherRepository: CurrentWeatherRepository = CurrentWeatherRepository()
 
     private var forecastResult = MutableLiveData<ForecastResult?>()
-    var foreCastWeatherRepository: ForeCastWeatherRepository
+    private var foreCastWeatherRepository: ForeCastWeatherRepository
 
     var City: String? = null
 

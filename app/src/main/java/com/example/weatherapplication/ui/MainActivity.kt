@@ -24,8 +24,8 @@ import com.google.android.gms.location.LocationServices
 class MainActivity : AppCompatActivity(), ThreadFinishListener {
     private var binding: ActivityMainBinding? = null
     private var fusedLocationClient: FusedLocationProviderClient? = null
-    var currentWeatherViewModel: CurrentWeatherViewModel? = null
-    val MY_PERMISSION_ACCESS_COARSE_LOCATION = 1
+    private var currentWeatherViewModel: CurrentWeatherViewModel? = null
+    private val MY_PERMISSION_ACCESS_COARSE_LOCATION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,7 +87,8 @@ class MainActivity : AppCompatActivity(), ThreadFinishListener {
 
 
     override fun onFinish() {
-        currentWeatherViewModel!!.callApi("")
+        if (Utils.isNetworkAvailable(this))
+            currentWeatherViewModel!!.callApi("")
     }
 
     override fun onRequestPermissionsResult(

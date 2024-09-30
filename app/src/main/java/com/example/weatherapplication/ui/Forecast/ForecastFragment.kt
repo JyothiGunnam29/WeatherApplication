@@ -39,12 +39,12 @@ class ForecastFragment : Fragment() {
             ) { response ->
                 lifecycleScope.launch {
                     // Insert forecast
-                    val forecast = ForecastEntity(cityName = "New York", date = "2024-09-28", temperature = 24.0, description = "Partly Cloudy")
-                    db.forecastDao().insert(forecast)
+                    //val forecast = ForecastEntity(cityName = "New York", date = "2024-09-28", temperature = 24.0, description = "Partly Cloudy")
+                    //db.forecastDao().insert(forecast)
 
                     // Check forecast
-                    val count = db.forecastDao().countForecastsByCityAndDate("New York", "2024-09-28")
-                    println("Forecast count for New York on 2024-09-28: $count")
+                    //val count = db.forecastDao().countForecastsByCityAndDate("New York", "2024-09-28")
+                    //println("Forecast count for New York on 2024-09-28: $count")
                 }
                 forecastAdapter = ForecastAdapter(requireActivity(), response?.list!!)
                 binding!!.recyclerViewForecast.adapter = forecastAdapter
