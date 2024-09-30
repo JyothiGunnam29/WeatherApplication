@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapplication.database.ForecastEntity
 import com.example.weatherapplication.database.WeatherDatabase
 import com.example.weatherapplication.databinding.FragmentDashboardBinding
-import com.example.weatherapplication.ui.CurrentWeather.CurrentWeatherViewModel
+import com.example.weatherapplication.ui.currentWeather.CurrentWeatherViewModel
 import com.example.weatherapplication.ui.adapter.ForecastAdapter
 import kotlinx.coroutines.launch
 
