@@ -19,7 +19,6 @@ class WeatherApplicationClass : Application() {
     companion object {
         var context: Context? = null
         var instance: WeatherApplicationClass? = null
-            private set
     }
 
     init {

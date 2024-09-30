@@ -1,4 +1,4 @@
-package com.example.weatherapplication.ui.CurrentWeather
+package com.example.weatherapplication.ui.currentWeather
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +22,7 @@ class CurrentWeatherViewModel : ViewModel() {
         forecastResult = foreCastWeatherRepository.getcurrentResponseLiveData()
     }
 
-    val weatherData: LiveData<WeatherResult?>
+    val weatherData: MutableLiveData<WeatherResult?>
         get() = weatherResult
 
     fun callApi(city: String?) {

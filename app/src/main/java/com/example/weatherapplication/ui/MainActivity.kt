@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -14,17 +15,17 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.weatherapplication.R
 import com.example.weatherapplication.databinding.ActivityMainBinding
-import com.example.weatherapplication.ui.CurrentWeather.CurrentWeatherViewModel
+import com.example.weatherapplication.ui.currentWeather.CurrentWeatherViewModel
 import com.example.weatherapplication.ui.FusedLocationClass.ThreadFinishListener
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity(), ThreadFinishListener {
     private var binding: ActivityMainBinding? = null
     private var fusedLocationClient: FusedLocationProviderClient? = null
-    var currentWeatherViewModel: CurrentWeatherViewModel? = null
+    private var currentWeatherViewModel: CurrentWeatherViewModel? = null
+    private val MY_PERMISSION_ACCESS_COARSE_LOCATION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,15 +53,18 @@ class MainActivity : AppCompatActivity(), ThreadFinishListener {
 
         if (hasLocationPermission()) {
             try {
-                WeatherApplicationClass.instance?.fusedLocation?.init(this)
+                initiateLocation()
             } catch (exception: Exception) {
             }
         } else requestLocationPermission()
     }
 
+    private fun initiateLocation() {
+        WeatherApplicationClass.instance?.fusedLocation?.init(this)
+    }
 
     private fun requestLocationPermission() {
-        val MY_PERMISSION_ACCESS_COARSE_LOCATION = 1
+
         ActivityCompat.requestPermissions(
             this,
             arrayOf(
@@ -83,6 +87,25 @@ class MainActivity : AppCompatActivity(), ThreadFinishListener {
 
 
     override fun onFinish() {
-        currentWeatherViewModel!!.callApi("")
+        if (Utils.isNetworkAvailable(this))
+            currentWeatherViewModel!!.callApi("")
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == MY_PERMISSION_ACCESS_COARSE_LOCATION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted
+                initiateLocation()
+            } else {
+                // Permission denied
+                Toast.makeText(this, "Location permission denied.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

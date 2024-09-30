@@ -1,4 +1,4 @@
-package com.example.weatherapplication.ui.CurrentWeather
+package com.example.weatherapplication.ui.currentWeather
 
 import androidx.lifecycle.MutableLiveData
 import com.example.weatherapplication.data.WeatherResult

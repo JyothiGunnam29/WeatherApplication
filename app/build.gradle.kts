@@ -21,6 +21,9 @@ android {
                 arg("room.schemaLocation", "$projectDir/schemas")
             }
         }
+        testOptions {
+            unitTests.isIncludeAndroidResources = true
+        }
     }
 
     buildTypes {
@@ -54,6 +57,7 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.recyclerview)
+    implementation(libs.core)
     //implementation(libs.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
@@ -69,5 +73,11 @@ dependencies {
     kapt(libs.roomcompiler)
     testImplementation(libs.roomtesting)
     implementation(libs.roomktx)
-    //implementation(libs.startup)
+
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockitoInline)
+    androidTestImplementation(libs.mockitoAndroid)
+    testImplementation(libs.kotlinTest)
+    testImplementation(libs.archTest)
+
 }

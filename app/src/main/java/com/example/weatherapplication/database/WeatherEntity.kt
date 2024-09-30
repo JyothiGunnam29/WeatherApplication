@@ -7,8 +7,11 @@ import androidx.room.PrimaryKey
 class WeatherEntity(
     @JvmField var city: String,
     var temperature: Double,
+    var tempH: Double,
+    var tempL: Double,
     var date: String,
     var humidity: Int,
+    var wind: Int,
     var description: String
 ) {
     @PrimaryKey(autoGenerate = true)
