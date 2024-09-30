@@ -204,9 +204,9 @@ class CurrentWeatherFragment : Fragment() {
                         "H " + weatherEntity.tempH.toString() + "°C"
                     binding!!.textLow.text =
                         "L " + weatherEntity.tempL.toString() + "°C"
-                    binding!!.textWeather.text = weatherEntity.description.plus(" km/h")
+                    binding!!.textWeather.text = weatherEntity.description
                     binding!!.txtHumidity.text = weatherEntity.humidity.toString().plus(" %")
-                    binding!!.txtWind.text = weatherEntity.wind.toString()
+                    binding!!.txtWind.text = weatherEntity.wind.toString().plus(" km/h")
                     loadBackgroundbg(weatherEntity.description, null)
                 }
             }

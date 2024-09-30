@@ -23,7 +23,9 @@
     4, Run the app on an emulator or device.
    
 5. [Usage](#usage)
-   
+    The Application has two tabs implementing bottom navigation bar. on the first, it shows current weather information and on second tab future forecast information is present.
+    User can search for required city weather information on the current weather page
+
 6. [Architecture](#architecture)
 
    This project include MVVM (Model-View-ViewModel)
@@ -38,6 +40,7 @@
    Room: For local database.
    Coroutines: For asynchronous programming.
    LiveData: For lifecycle-aware data updates.
+   Mockito: To Mock objects for writing Unit Test cases.
    
 8. [Contributing](#contributing)
    
