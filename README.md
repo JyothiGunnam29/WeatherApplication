@@ -19,7 +19,7 @@ The project will display the weather data via an Android application.
 
 | -------------------- | ------------------- |
 
-| ![Current Weather](https://github.com/user-attachments/assets/1622f6d8-9fb0-40b3-a630-7cbe69c7e920) | ![Forecast Data](https://github.com/user-attachments/assets/b6639013-0c87-4df0-841e-dfedc9e33a97) |
+| ![Current Weather](https://github.com/user-attachments/assets/1622f6d8-9fb0-40b3-a630-7cbe69c7e920 | width=150) | ![Forecast Data](https://github.com/user-attachments/assets/b6639013-0c87-4df0-841e-dfedc9e33a97 | width=150) |
 
 4. [Installation]
 
