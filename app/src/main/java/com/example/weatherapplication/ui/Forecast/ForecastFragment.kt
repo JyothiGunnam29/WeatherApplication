@@ -46,8 +46,11 @@ class ForecastFragment : Fragment() {
                     //val count = db.forecastDao().countForecastsByCityAndDate("New York", "2024-09-28")
                     //println("Forecast count for New York on 2024-09-28: $count")
                 }
-                forecastAdapter = ForecastAdapter(requireActivity(), response?.list!!)
-                binding!!.recyclerViewForecast.adapter = forecastAdapter
+
+                if (response != null) {
+                    forecastAdapter = ForecastAdapter(requireActivity(), response?.list!!)
+                    binding!!.recyclerViewForecast.adapter = forecastAdapter
+                }
             }
         return root
     }

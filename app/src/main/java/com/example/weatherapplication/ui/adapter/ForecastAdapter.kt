@@ -44,7 +44,7 @@ class ForecastAdapter(private val context: Context, private val forecastList: Li
     }
 
     override fun getItemCount(): Int {
-        return forecastList.size
+        return forecastList?.size ?: 0
     }
 }
 
